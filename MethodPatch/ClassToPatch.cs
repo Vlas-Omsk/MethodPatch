@@ -1,14 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MethodPatch3
+namespace MethodPatch
 {
     public class ClassToPatch
     {
-        int i1 = 0, i2 = 1;
+        int i1 = 1, i2 = 1;
 
         public bool Write(string str)
         {

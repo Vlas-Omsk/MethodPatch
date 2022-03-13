@@ -9,8 +9,8 @@ X32
   Release x32 (with debugger) | + |
   Release x32                 | + |
 X64
-  Debug x64 (with debugger)   | - | Little space
-  Debug x64                   | ~ | AccessViolationException at the end
+  Debug x64 (with debugger)   | - | Not enough space
+  Debug x64                   | ~ | AccessViolationException after execution
   Release x64 (with debugger) | - | AccessViolationException
   Release x64                 | + |
 ```

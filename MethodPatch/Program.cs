@@ -1,12 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Reflection;
-using System.Runtime.InteropServices;
 
-namespace MethodPatch3
+namespace MethodPatch
 {
     class Program
     {
@@ -17,18 +12,18 @@ namespace MethodPatch3
         //   Release x32 (with debugger) | + |
         //   Release x32                 | + |
         //  X64
-        //   Debug x64 (with debugger)   | - | Little space
-        //   Debug x64                   | ~ | AccessViolationException at the end
+        //   Debug x64 (with debugger)   | - | Not enough space
+        //   Debug x64                   | ~ | AccessViolationException after execution
         //   Release x64 (with debugger) | - | AccessViolationException
         //   Release x64                 | + |
 
-        public unsafe static void Main(string[] args)
+        unsafe static void Main(string[] args)
         {
             var writeInternalMethodInfo = typeof(ClassToPatch).GetMethod("WriteInternal", BindingFlags.Instance | BindingFlags.NonPublic);
             var methodHook = new MethodHook(writeInternalMethodInfo);
+            methodHook.AfterCall = MethodHook_AfterCall;
+            methodHook.BeforeCall = MethodHook_BeforeCall;
             methodHook.Hook();
-            methodHook.BeforeCall += MethodHook_BeforeCall;
-            methodHook.AfterCall += MethodHook_AfterCall;
 
             // END
             Console.ReadLine();
@@ -36,12 +31,12 @@ namespace MethodPatch3
             Console.ReadLine();
         }
 
-        private static void MethodHook_AfterCall(object sender, EventArgs e)
+        private static void MethodHook_AfterCall()
         {
             Console.WriteLine("Hello world! (Hook: AfterCall)");
         }
 
-        private static void MethodHook_BeforeCall(object sender, EventArgs e)
+        private static void MethodHook_BeforeCall()
         {
             Console.WriteLine("Hello world! (Hook: BeforeCall)");
         }

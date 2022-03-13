@@ -1,19 +1,36 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MethodPatch3
+namespace MethodPatch
 {
     public enum Instruction : byte
     {
-        CALL = 0xE8,
+        /// <summary>
+        /// Call Procedure
+        /// </summary>
+        CALL_REL16_32 = 0xE8,
+        /// <summary>
+        /// ???
+        /// </summary>
         MOV = 0x48,
+        /// <summary>
+        /// Call Procedure
+        /// </summary>
         CALL_ABSOLUTE = 0xFF,
-        JMP = 0xEB,
+        /// <summary>
+        /// Jump
+        /// </summary>
+        JMP_REL8 = 0xEB,
+        /// <summary>
+        /// No Operation
+        /// </summary>
         NOP = 0x90,
+        /// <summary>
+        /// Return from procedure
+        /// </summary>
         RETN = 0xC3,
-        PUSH = 0x50
+        /// <summary>
+        /// Push Word, Doubleword or Quadword Onto the Stack
+        /// </summary>
+        PUSH_R16_32 = 0x50
     }
 }

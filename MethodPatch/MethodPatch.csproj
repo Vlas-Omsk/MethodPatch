@@ -89,12 +89,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblerHelper.cs" />
     <Compile Include="ClassToPatch.cs" />
-    <Compile Include="Extensions.cs" />
+    <Compile Include="Extensions\IntPtrExtension.cs" />
     <Compile Include="Instruction.cs" />
+    <Compile Include="LLMethodInfo.cs" />
+    <Compile Include="LLWriter.cs" />
     <Compile Include="MethodHook.cs" />
+    <Compile Include="MethodHook32.cs" />
+    <Compile Include="MethodHook64.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WinApi\Constants.cs" />
+    <Compile Include="WinApi\Kernel32.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
