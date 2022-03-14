@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace MethodPatch
 {
@@ -73,6 +74,8 @@ namespace MethodPatch
                 case WriteRspCommandType.Sub:
                     writer.WriteByte(0xec); // sub rsp,$amount
                     break;
+                default:
+                    throw new InvalidEnumArgumentException();
             }
             writer.WriteByte(amount);
         }
@@ -93,7 +96,7 @@ namespace MethodPatch
                     writer.WriteByte(0x89); // rcx,qword ptr ds:[rax]
                     break;
                 default:
-                    throw new Exception();
+                    throw new InvalidEnumArgumentException();
             }
             writer
                 .WriteByte(0x48)
@@ -108,7 +111,7 @@ namespace MethodPatch
                     writer.WriteByte(0x89); // rdx,qword ptr ds:[rax + 4]
                     break;
                 default:
-                    throw new Exception();
+                    throw new InvalidEnumArgumentException();
             }
             writer
                 .WriteByte(0x50)

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel;
 
 namespace MethodPatch
 {
@@ -72,7 +73,7 @@ namespace MethodPatch
                     writer.WriteByte(0x89); // rcx,qword ptr ds:[rax]
                     break;
                 default:
-                    throw new Exception();
+                    throw new InvalidEnumArgumentException();
             }
             writer
                 .WriteByte(0x48)
@@ -86,7 +87,7 @@ namespace MethodPatch
                     writer.WriteByte(0x89); // rdx,qword ptr ds:[rax + 4]
                     break;
                 default:
-                    throw new Exception();
+                    throw new InvalidEnumArgumentException();
             }
             writer
                 .WriteByte(0x50)
